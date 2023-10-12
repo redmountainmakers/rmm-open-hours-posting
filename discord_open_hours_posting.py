@@ -73,6 +73,7 @@ async def create_single_event():
 async def on_ready():
     print(f"Logged in as {client.user}")
     await create_single_event()
+    await client.close()
 
 # Log in to Discord
 client.run(DISCORD_BOT_TOKEN)
