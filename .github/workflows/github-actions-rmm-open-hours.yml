@@ -24,8 +24,8 @@ jobs:
     - name: Run script
       run: python discord_open_hours_posting.py
       env:
-        DISCORD_BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        WA_API_KEY: ${{ secrets.API_KEY }}
+        DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        WA_API_KEY: ${{ secrets.WA_API_KEY }}
         RAIDHELPER_LEADER_ID: ${{ secrets.RAIDHELPER_LEADER_ID }}
         SERVER_ID: ${{ secrets.SERVER_ID }}
         CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
