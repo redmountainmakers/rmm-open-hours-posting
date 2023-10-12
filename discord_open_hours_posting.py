@@ -53,7 +53,7 @@ async def create_single_event():
     event_data = await create_event_for_date(event_date, event_time, duration=120)  # 2-hour event
 
     event = {
-        "title": "Test Event",
+        "title": "Test Event 2",
         "description": "A single test event",
         "templateId": 1,
         "date": event_data["date"],
