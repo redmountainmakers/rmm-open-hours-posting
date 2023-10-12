@@ -1,14 +1,10 @@
 import discord
 import datetime
+import calendar
 import pytz
 import aiohttp
 import asyncio
 import os
-
-intents = discord.Intents.default()
-intents.members = True
-
-client = discord.Client(intents=intents)
 
 # Retrieve environment variables
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
@@ -16,7 +12,28 @@ WA_API_KEY = os.getenv("WA_API_KEY")
 RAIDHELPER_LEADER_ID = os.getenv("RAIDHELPER_LEADER_ID")
 SERVER_ID = os.getenv("SERVER_ID")
 CHANNEL_ID = os.getenv("CHANNEL_ID")
-TEST_CHANNEL_ID = os.getenv("TEST_CHANNEL_ID")
+
+intents = discord.Intents.default()
+intents.members = True
+
+client = discord.Client(intents=intents)
+
+
+def generate_event_dates_for_month(year, month):
+    event_dates = []
+    first_day, days_in_month = calendar.monthrange(year, month)
+
+    for day in range(1, days_in_month + 1):
+        current_date = datetime.date(year, month, day)
+        weekday = current_date.weekday()
+
+        if weekday == calendar.TUESDAY or weekday == calendar.THURSDAY:
+            event_dates.append(current_date)
+        elif weekday == calendar.SUNDAY:
+            event_dates.append(current_date)
+
+    return event_dates
+
 
 async def create_event_for_date(date, time, duration):
     event_datetime = datetime.datetime.combine(date, time)
@@ -46,34 +63,49 @@ async def post_event(event, channel_id):
         except Exception as e:
             print(f"Error posting event: {e}")
 
-async def create_single_event():
-    event_date = datetime.date(2023, 11, 1)  # November 1, 2023
-    event_time = datetime.time(0, 0)  # Midnight
-    
-    event_data = await create_event_for_date(event_date, event_time, duration=120)  # 2-hour event
-
-    event = {
-        "title": "Test Event 2",
-        "description": "A single test event",
-        "templateId": 1,
-        "date": event_data["date"],
-        "leaderId": RAIDHELPER_LEADER_ID,
-        "advancedSettings": {"duration": event_data["duration"], "limit": 1},
-    }
-
-    post_data = {
-        **event,
-        "date": event["date"],
-        "time": event["date"],
-    }
-    
-    await post_event(post_data, TEST_CHANNEL_ID)
+year, month = datetime.date.today().year, datetime.date.today().month + 1
+event_dates = generate_event_dates_for_month(year, month)
+tue_thu_time = datetime.time(hour=12, minute=0)
+sunday_time = datetime.time(hour=11, minute=0)
 
 @client.event
 async def on_ready():
     print(f"Logged in as {client.user}")
-    await create_single_event()
-    await client.close()
 
+    for date in event_dates:
+        if date.weekday() == calendar.SUNDAY:
+            time = sunday_time
+            duration = 180
+            day = "Sunday"
+        else:
+            time = tue_thu_time
+            duration = 120
+            day = "Tuesday" if date.weekday() == calendar.TUESDAY else "Thursday"
+
+        event_data = await create_event_for_date(date, time, duration)
+
+        event = {
+            "title": f"{day} Open Hours",
+            "description": "",
+            "templateId": 1,
+            "date": event_data["date"],
+            "leaderId": RAIDHELPER_LEADER_ID,
+            "advancedSettings": {"duration": event_data["duration"], "limit": 1},
+        }
+
+        print(f"Event JSON data: {event}")
+
+        post_data = {
+            **event,
+            "date": event["date"],
+            "time": event["date"],
+        }
+
+        await post_event(post_data, CHANNEL_ID)
+
+        # Optionally, you might want to add a delay between posting events
+        # to avoid hitting API rate limits.
+        await asyncio.sleep(5)  # Wait for 5 seconds before posting the next event
+     await client.close()
 # Log in to Discord
 client.run(DISCORD_BOT_TOKEN)
