@@ -1,4 +1,4 @@
-name: Class Followup Automation
+name: Discord Open Hours Posting
 
 on:
   workflow_dispatch:
