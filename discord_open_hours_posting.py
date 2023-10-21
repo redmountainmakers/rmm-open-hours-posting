@@ -106,6 +106,7 @@ async def on_ready():
         # Optionally, you might want to add a delay between posting events
         # to avoid hitting API rate limits.
         await asyncio.sleep(5)  # Wait for 5 seconds before posting the next event
+    await channel.send("/overview server")
     await client.close()
 # Log in to Discord
 client.run(DISCORD_BOT_TOKEN)
