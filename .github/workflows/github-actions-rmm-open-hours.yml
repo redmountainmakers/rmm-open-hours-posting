@@ -2,7 +2,7 @@ name: Discord Open Hours Posting
 
 on: 
   schedule:
-    - cron: '0 1 21 * *'
+    - cron: '0 1 20 * *'
   workflow_dispatch:
 
 jobs:
