@@ -24,4 +24,4 @@ This repository contains a script and associated GitHub Action to automate the p
 3. **Running the Script**: You can run the script using:
   python discord_open_hours_posting.py
 
-4. **GitHub Action**: The action is scheduled to run on the 20th of every month at 1 AM. It uses the environment variables set in the repository's secrets.
+4. **GitHub Action**: The action is scheduled to run on the 20th of every month at 7 PM CST. It uses the environment variables set in the repository's secrets.
