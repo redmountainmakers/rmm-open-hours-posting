@@ -1,6 +1,6 @@
 # Red Mountain Makers Open Hours Posting
 
-This repository contains a script and associated GitHub Action to automate the posting of open hours for the Red Mountain Makers on Discord.
+This repository contains a script and associated GitHub Action to automate the posting of open hours for the Red Mountain Makers on Discord. It uses the "RMM-Helper" discord bot as a user 
 
 ## Overview
 
