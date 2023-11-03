@@ -90,7 +90,7 @@ async def on_ready():
             "templateId": 1,
             "date": event_data["date"],
             "leaderId": RAIDHELPER_LEADER_ID,
-            "advancedSettings": {"duration": event_data["duration"], "limit": 1},
+            "advancedSettings": {"duration": event_data["duration"], "limit": 1, "reminder": 120},
         }
 
         print(f"Event JSON data: {event}")
