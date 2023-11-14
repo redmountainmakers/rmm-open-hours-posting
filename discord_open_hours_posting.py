@@ -6,6 +6,14 @@ import aiohttp
 import asyncio
 import os
 
+# Dictionary for event details
+EVENT_DETAILS = {
+    calendar.TUESDAY: {"time": datetime.time(hour=12, minute=0), "duration": 120},
+    calendar.THURSDAY: {"time": datetime.time(hour=12, minute=0), "duration": 120},
+    calendar.SUNDAY: {"time": datetime.time(hour=11, minute=0), "duration": 180},
+    calendar.SATURDAY: {"time": datetime.time(hour=14, minute=0), "duration": 240}
+}
+
 # Retrieve environment variables
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 WA_API_KEY = os.getenv("WA_API_KEY")
@@ -27,12 +35,11 @@ def generate_event_dates_for_month(year, month):
         current_date = datetime.date(year, month, day)
         weekday = current_date.weekday()
 
-        if weekday == calendar.TUESDAY or weekday == calendar.THURSDAY:
-            event_dates.append(current_date)
-        elif weekday == calendar.SUNDAY:
+        if weekday in EVENT_DETAILS:
             event_dates.append(current_date)
 
     return event_dates
+
 
 
 async def create_event_for_date(date, time, duration):
@@ -73,25 +80,22 @@ async def on_ready():
     print(f"Logged in as {client.user}")
 
     for date in event_dates:
-        if date.weekday() == calendar.SUNDAY:
-            time = sunday_time
-            duration = 180
-            day = "Sunday"
-        else:
-            time = tue_thu_time
-            duration = 120
-            day = "Tuesday" if date.weekday() == calendar.TUESDAY else "Thursday"
+        weekday = date.weekday()
+        if weekday in EVENT_DETAILS:
+            event_time = EVENT_DETAILS[weekday]["time"]
+            duration = EVENT_DETAILS[weekday]["duration"]
+            day_name = calendar.day_name[weekday]
 
-        event_data = await create_event_for_date(date, time, duration)
+            event_data = await create_event_for_date(date, event_time, duration)
 
-        event = {
-            "title": f"{day} Open Hours",
-            "description": "",
-            "templateId": 1,
-            "date": event_data["date"],
-            "leaderId": RAIDHELPER_LEADER_ID,
-            "advancedSettings": {"duration": event_data["duration"], "limit": 1, "reminder": 120},
-        }
+            event = {
+                "title": f"{day_name} Open Hours",
+                "description": "",
+                "templateId": 1,
+                "date": event_data["date"],
+                "leaderId": RAIDHELPER_LEADER_ID,
+                "advancedSettings": {"duration": event_data["duration"], "limit": 1, "reminder": 120},
+            }
 
         print(f"Event JSON data: {event}")
 
