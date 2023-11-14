@@ -70,10 +70,18 @@ async def post_event(event, channel_id):
         except Exception as e:
             print(f"Error posting event: {e}")
 
-year, month = datetime.date.today().year, datetime.date.today().month + 1
-event_dates = generate_event_dates_for_month(year, month)
-tue_thu_time = datetime.time(hour=12, minute=0)
-sunday_time = datetime.time(hour=11, minute=0)
+current_year, current_month = date.today().year, date.today().month
+
+# Determine the next month and year
+if current_month == 12:
+    next_month = 1
+    next_year = current_year + 1
+else:
+    next_month = current_month + 1
+    next_year = current_year
+
+# Now use next_year and next_month for your event date generation
+event_dates = generate_event_dates_for_month(next_year, next_month)
 
 @client.event
 async def on_ready():
