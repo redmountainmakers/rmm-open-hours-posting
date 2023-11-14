@@ -4,7 +4,7 @@ This repository contains a script and associated GitHub Action to automate the p
 
 ## Overview
 
-1. **[discord_open_hours_posting.py](https://github.com/redmountainmakers/rmm-open-hours-posting/blob/main/discord_open_hours_posting.py)**: This Python script is responsible for generating and posting events on Discord for the open hours of Red Mountain Makers. The script uses the `discord.py` library to interact with Discord and `aiohttp` to make HTTP requests. The events are scheduled for Tuesdays, Thursdays, and Sundays.
+1. **[discord_open_hours_posting.py](https://github.com/redmountainmakers/rmm-open-hours-posting/blob/main/discord_open_hours_posting.py)**: This Python script is responsible for generating and posting events on Discord for the open hours of Red Mountain Makers. The script uses the `discord.py` library to interact with Discord and `aiohttp` to make HTTP requests. The events are scheduled for Tuesdays, Thursdays, Saturdays, and Sundays.
 
 2. **[GitHub Action Workflow](https://github.com/redmountainmakers/rmm-open-hours-posting/blob/main/.github/workflows/github-actions-rmm-open-hours.yml)**: This workflow is set up to run the script automatically on a schedule. It checks out the repository, sets up Python, installs the required dependencies, and then runs the `discord_open_hours_posting.py` script.
 
