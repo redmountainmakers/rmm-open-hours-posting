@@ -70,7 +70,7 @@ async def post_event(event, channel_id):
         except Exception as e:
             print(f"Error posting event: {e}")
 
-current_year, current_month = date.today().year, date.today().month
+current_year, current_month = datetime.date.today().year, datetime.date.today().month
 
 # Determine the next month and year
 if current_month == 12:
