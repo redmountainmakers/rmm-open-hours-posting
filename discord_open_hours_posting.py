@@ -124,8 +124,9 @@ async def on_ready():
     if channel is None:
         print(f"Unable to find channel with ID {CHANNEL_ID}")
         return
-    
-    await channel.send("/overview server")
+    else:
+        await channel.send("/overview server")
+        
     await client.close()
 # Log in to Discord
 client.run(DISCORD_BOT_TOKEN)
