@@ -19,7 +19,7 @@ DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 WA_API_KEY = os.getenv("WA_API_KEY")
 RAIDHELPER_LEADER_ID = os.getenv("RAIDHELPER_LEADER_ID")
 SERVER_ID = os.getenv("SERVER_ID")
-CHANNEL_ID = os.getenv("CHANNEL_ID")
+CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
 
 intents = discord.Intents.default()
 intents.members = True
@@ -87,7 +87,7 @@ event_dates = generate_event_dates_for_month(next_year, next_month)
 @client.event
 async def on_ready():
     print(f"Logged in as {client.user}")
-
+   
     for date in event_dates:
         weekday = date.weekday()
         if weekday in EVENT_DETAILS:
@@ -119,6 +119,12 @@ async def on_ready():
         # Optionally, you might want to add a delay between posting events
         # to avoid hitting API rate limits.
         await asyncio.sleep(5)  # Wait for 5 seconds before posting the next event
+    
+    channel = client.get_channel(CHANNEL_ID)  # Fetch the channel object
+    if channel is None:
+        print(f"Unable to find channel with ID {CHANNEL_ID}")
+        return
+    
     await channel.send("/overview server")
     await client.close()
 # Log in to Discord
