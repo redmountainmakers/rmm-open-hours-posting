@@ -8,9 +8,9 @@ import os
 
 # Dictionary for event details
 EVENT_DETAILS = {
-    calendar.TUESDAY: {"time": datetime.time(hour=12, minute=0), "duration": 120},
-    calendar.THURSDAY: {"time": datetime.time(hour=12, minute=0), "duration": 120},
-    calendar.SUNDAY: {"time": datetime.time(hour=11, minute=0), "duration": 180},
+    calendar.TUESDAY: {"time": datetime.time(hour=19, minute=0), "duration": 120},
+    calendar.THURSDAY: {"time": datetime.time(hour=19, minute=0), "duration": 120},
+    calendar.SUNDAY: {"time": datetime.time(hour=18, minute=0), "duration": 180},
     calendar.SATURDAY: {"time": datetime.time(hour=14, minute=0), "duration": 240}
 }
 
