@@ -120,12 +120,7 @@ async def on_ready():
         # to avoid hitting API rate limits.
         await asyncio.sleep(5)  # Wait for 5 seconds before posting the next event
     
-    channel = client.get_channel(CHANNEL_ID)  # Fetch the channel object
-    if channel is None:
-        print(f"Unable to find channel with ID {CHANNEL_ID}")
-        return
-    else:
-        await channel.send("/overview server")
+
         
     await client.close()
 # Log in to Discord
