@@ -26,7 +26,7 @@ jobs:
         pip install -r requirements.txt
         
     - name: Run script
-      run: python reminder_email.py
+      run: python reminder_email_testing.py
       env:
         DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
         WA_API_KEY: ${{ secrets.WA_API_KEY }}
