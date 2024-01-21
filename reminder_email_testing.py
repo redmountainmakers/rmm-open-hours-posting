@@ -163,7 +163,10 @@ def find_open_hours_host(api_key, channel_id, server_id):
     return None
 
 async def fetch_discord_username(discord_id):
-    client = discord.Client()
+    intents = discord.Intents.default()  # Use default intents
+    intents.members = True  # Set to True if you need to access the members
+    client = discord.Client(intents=intents)
+
     await client.login(DISCORD_BOT_TOKEN, bot=True)
     try:
         user = await client.fetch_user(discord_id)
