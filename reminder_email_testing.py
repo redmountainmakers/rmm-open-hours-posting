@@ -167,7 +167,7 @@ async def fetch_discord_username(discord_id):
     intents.members = True  # Set to True if you need to access the members
     client = discord.Client(intents=intents)
 
-    await client.login(DISCORD_BOT_TOKEN, bot=True)
+    await client.login(DISCORD_BOT_TOKEN)
     try:
         user = await client.fetch_user(discord_id)
         return user.name  # or use user.display_name
