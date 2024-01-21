@@ -182,7 +182,11 @@ def get_discord_username(discord_id):
 
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID)
 
+print(discord_id)
+
 discord_username = get_discord_username(discord_id)
+
+print(discord_username)
 
 access_token = get_wild_apricot_access_token(WA_API_KEY)
 wild_apricot_user_id = find_contact_by_discord_username(discord_username, access_token)
