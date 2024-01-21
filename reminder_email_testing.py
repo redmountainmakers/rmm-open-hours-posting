@@ -45,6 +45,8 @@ def find_contact_by_discord_username(discord_username, access_token):
     
     contacts_response = requests.get(contacts_url, headers=headers)
 
+    print(contacts_response.json())
+
     if contacts_response.status_code != 200:
         print(f"Error: Unable to retrieve contacts. Status code: {contacts_response.status_code}")
         return None
