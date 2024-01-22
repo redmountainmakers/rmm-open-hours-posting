@@ -185,35 +185,31 @@ async def fetch_discord_username(discord_id):
 def get_discord_username(discord_id):
     return asyncio.run(fetch_discord_username(discord_id))
 
-async def send_discord_message(client, channel_id, discord_user, message):
+async def send_discord_message(client, channel_id, discord_user_id, message):
     """Sends a message in a Discord channel and tags a user."""
     channel = client.get_channel(channel_id)
     if channel:
-        await channel.send(f'<@{discord_user.id}> {message}')
+        await channel.send(f'<@{discord_user_id}> {message}')
     else:
         print("Channel not found")
 
-def send_discord_reminder(discord_user_id, message):
+async def send_discord_reminder(discord_user_id, message):
     """Function to send a Discord reminder."""
     intents = discord.Intents.default()
     client = discord.Client(intents=intents)
 
     async def setup():
         await client.wait_until_ready()
-        discord_user = await client.fetch_user(discord_user_id)
-        await send_discord_message(client, TEST_CHANNEL_ID, discord_user, message)
+        await send_discord_message(client, CHANNEL_ID, discord_user_id, message)
         await client.close()
 
     client.loop.create_task(setup())
-    client.run(DISCORD_BOT_TOKEN)
-
+    await client.start(DISCORD_BOT_TOKEN)
 #main functionality
 
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID)
 
 discord_username = get_discord_username(discord_id)
-
-print(discord_username)
 
 access_token = get_wild_apricot_access_token(WA_API_KEY)
 wild_apricot_user_id = find_contact_by_discord_username(discord_username, access_token)
