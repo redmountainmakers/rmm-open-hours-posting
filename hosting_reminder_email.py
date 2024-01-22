@@ -13,6 +13,9 @@ SERVER_ID = os.getenv("SERVER_ID")
 CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
 TEST_CHANNEL_ID = int(os.getenv("TEST_CHANNEL_ID"))
 
+log_file_path = 'hosting_reminder.log'
+logging.basicConfig(level=logging.INFO, filename= log_file_path, filemode='a', format='%(asctime)s - %(levelname)s - %(message)s')
+
 def get_wild_apricot_access_token(api_key):
     """Obtains and returns an access token for the Wild Apricot API."""
     auth_url = 'https://oauth.wildapricot.org/auth/token'
