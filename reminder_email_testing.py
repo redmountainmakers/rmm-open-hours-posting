@@ -135,7 +135,7 @@ def fill_email_template(Contact_First_Name, Event_Title,Discount_Code, template)
 def find_open_hours_host(api_key, channel_id, server_id):
 
     # Current time and 8 hours from now in Unix timestamp
-    current_time = int(time.time())
+    current_time = int(time.time()) - 4 * 3600
     eight_hours_later = current_time + 8 * 3600
 
     # Set up the header
@@ -195,8 +195,8 @@ wild_apricot_user_id = find_contact_by_discord_username(discord_username, access
 
 print(wild_apricot_user_id)
 
-email, first_name = get_contact_info(wild_apricot_user_id, access_token)
+#email, first_name = get_contact_info(wild_apricot_user_id, access_token)
 
-email_body = fill_email_template(first_name, "test", "test")
+#email_body = fill_email_template(first_name, "test", "test")
 
-send_email(access_token, email_body, wild_apricot_user_id, first_name, email)
+#send_email(access_token, email_body, wild_apricot_user_id, first_name, email)
