@@ -215,7 +215,7 @@ access_token = get_wild_apricot_access_token(WA_API_KEY)
 wild_apricot_user_id = find_contact_by_discord_username(discord_username, access_token)
 
 if wild_apricot_user_id == None:
-    send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!")
+    asyncio.run(send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!"))
     exit()
 
 email, first_name = get_contact_info(wild_apricot_user_id, access_token)
