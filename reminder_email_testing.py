@@ -43,13 +43,8 @@ def find_contact_by_discord_username(discord_username, access_token):
 
     filter_query = f"$filter='Discord Username' eq '{discord_username}'"
     contacts_url = f"{api_base_url}/accounts/{account_id}/contacts?$async=false&{filter_query}"
-    
-    print(contacts_url)
-    print(headers)
 
     contacts_response = requests.get(contacts_url, headers=headers)
-
-    print(contacts_response.json())
 
     if contacts_response.status_code != 200:
         print(f"Error: Unable to retrieve contacts. Status code: {contacts_response.status_code}")
@@ -111,7 +106,7 @@ def send_email(access_token, body, contact_id, first_name, email):
 
     # Prepare email data
     email_data = {
-        "Subject": "Free Month Promo at Red Mountain Makers!",
+        "Subject": "Open Hours Reminder",
         "Body": body,
         "ReplyToAddress": "secretary@redmountainmakers.org",
         "ReplyToName": "Red Mountain Makers",
@@ -197,10 +192,8 @@ print(discord_username)
 access_token = get_wild_apricot_access_token(WA_API_KEY)
 wild_apricot_user_id = find_contact_by_discord_username(discord_username, access_token)
 
-print(wild_apricot_user_id)
+email, first_name = get_contact_info(wild_apricot_user_id, access_token)
 
-#email, first_name = get_contact_info(wild_apricot_user_id, access_token)
+email_body = fill_email_template(first_name, "test", "test")
 
-#email_body = fill_email_template(first_name, "test", "test")
-
-#send_email(access_token, email_body, wild_apricot_user_id, first_name, email)
+send_email(access_token, email_body, wild_apricot_user_id, first_name, email)
