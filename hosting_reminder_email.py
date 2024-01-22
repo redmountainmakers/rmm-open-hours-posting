@@ -213,7 +213,9 @@ discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID)
 
 discord_username = get_discord_username(discord_id)
 
-if not discord_username:
+print(discord_username)
+
+if discord_username == None:
     send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!")
     exit()
 
