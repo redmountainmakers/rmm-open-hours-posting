@@ -38,6 +38,7 @@ def find_contact_by_discord_username(discord_username, access_token):
     
     account_id = get_account_id(headers)
     if not account_id:
+        print("Error: Unable to retrieve account ID.")
         return None
 
     filter_query = f"$filter='Discord Username' eq '{discord_username}'"
