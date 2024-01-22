@@ -185,26 +185,27 @@ async def fetch_discord_username(discord_id):
 def get_discord_username(discord_id):
     return asyncio.run(fetch_discord_username(discord_id))
 
-async def send_discord_message(client, channel_id, discord_user_id, message):
+async def send_discord_message(channel_id, discord_user_id, message):
     """Sends a message in a Discord channel and tags a user."""
-    channel = client.get_channel(channel_id)
-    if channel:
-        await channel.send(f'<@{discord_user_id}> {message}')
-    else:
-        print("Channel not found")
-
-async def send_discord_reminder(discord_user_id, message):
-    """Function to send a Discord reminder."""
     intents = discord.Intents.default()
     client = discord.Client(intents=intents)
 
-    async def setup():
-        await client.wait_until_ready()
-        await send_discord_message(client, CHANNEL_ID, discord_user_id, message)
+    async def on_ready():
+        print(f'Logged in as {client.user}')
+        channel = client.get_channel(channel_id)
+        if channel:
+            await channel.send(f'<@{discord_user_id}> {message}')
         await client.close()
 
-    client.loop.create_task(setup())
+    client.event(on_ready)
     await client.start(DISCORD_BOT_TOKEN)
+
+def send_discord_reminder(discord_user_id, message):
+    asyncio.run(send_discord_message(CHANNEL_ID, discord_user_id, message))
+
+
+
+
 #main functionality
 
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID)
@@ -215,7 +216,7 @@ access_token = get_wild_apricot_access_token(WA_API_KEY)
 wild_apricot_user_id = find_contact_by_discord_username(discord_username, access_token)
 
 if wild_apricot_user_id == None:
-    asyncio.run(send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!"))
+    send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!")
     exit()
 
 email, first_name = get_contact_info(wild_apricot_user_id, access_token)
