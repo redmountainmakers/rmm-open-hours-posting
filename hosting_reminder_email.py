@@ -213,6 +213,10 @@ discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID)
 
 discord_username = get_discord_username(discord_id)
 
+if not discord_username:
+    send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!")
+    exit()
+
 access_token = get_wild_apricot_access_token(WA_API_KEY)
 wild_apricot_user_id = find_contact_by_discord_username(discord_username, access_token)
 
@@ -222,5 +226,5 @@ html_template = read_template_file("reminder_email_template.html")
 
 email_body = fill_email_template(first_name, html_template)
 
-if not send_email(access_token, email_body, wild_apricot_user_id, first_name, email):
-    send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!")
+send_email(access_token, email_body, wild_apricot_user_id, first_name, email)
+
