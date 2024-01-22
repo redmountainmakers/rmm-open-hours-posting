@@ -43,6 +43,9 @@ def find_contact_by_discord_username(discord_username, access_token):
     filter_query = f"$filter='Discord Username' eq '{discord_username}'"
     contacts_url = f"{api_base_url}/accounts/{account_id}/contacts?$async=false&{filter_query}"
     
+    print(contacts_url)
+    print(headers)
+
     contacts_response = requests.get(contacts_url, headers=headers)
 
     print(contacts_response.json())
