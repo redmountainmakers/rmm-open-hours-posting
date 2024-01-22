@@ -126,10 +126,13 @@ def send_email(access_token, body, contact_id, first_name, email):
     
     if send_email_response.status_code != 200:
         logging.error(f'Error: Unable to send email. Status code: {send_email_response.status_code}')
-        return
+        return False
+    else:
+        logging.info(f"Email sent successfully! to {first_name}")
+        return True
 
-def fill_email_template(Contact_First_Name, Event_Title, Discount_Code, template):
-    return template.format(Contact_First_Name=Contact_First_Name, Event_Title=Event_Title, Discount_Code=Discount_Code)
+def fill_email_template(Contact_First_Name, template):
+    return template.format(Contact_First_Name=Contact_First_Name)
 
 def read_template_file(file_path):
     with open(file_path, 'r') as file:
@@ -179,9 +182,30 @@ async def fetch_discord_username(discord_id):
     finally:
         await client.close()
 
-# Function to run the asynchronous Discord API call
 def get_discord_username(discord_id):
     return asyncio.run(fetch_discord_username(discord_id))
+
+async def send_discord_message(client, channel_id, discord_user, message):
+    """Sends a message in a Discord channel and tags a user."""
+    channel = client.get_channel(channel_id)
+    if channel:
+        await channel.send(f'<@{discord_user.id}> {message}')
+    else:
+        print("Channel not found")
+
+def send_discord_reminder(discord_user_id, message):
+    """Function to send a Discord reminder."""
+    intents = discord.Intents.default()
+    client = discord.Client(intents=intents)
+
+    async def setup():
+        await client.wait_until_ready()
+        discord_user = await client.fetch_user(discord_user_id)
+        await send_discord_message(client, TEST_CHANNEL_ID, discord_user, message)
+        await client.close()
+
+    client.loop.create_task(setup())
+    client.run(DISCORD_BOT_TOKEN)
 
 #main functionality
 
@@ -196,6 +220,7 @@ email, first_name = get_contact_info(wild_apricot_user_id, access_token)
 
 html_template = read_template_file("reminder_email_template.html")
 
-email_body = fill_email_template(first_name, "test", "test", html_template)
+email_body = fill_email_template(first_name, html_template)
 
-send_email(access_token, email_body, wild_apricot_user_id, first_name, email)
+if not send_email(access_token, email_body, wild_apricot_user_id, first_name, email):
+    send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!")
