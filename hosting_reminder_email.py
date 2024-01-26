@@ -144,7 +144,7 @@ def read_template_file(file_path):
 def find_open_hours_host(api_key, channel_id, server_id):
 
     # Current time and 8 hours from now in Unix timestamp
-    current_time = int(time.time())
+    current_time = int(time.time()) - 5 * 3600
     eight_hours_later = current_time + 8 * 3600
 
     # Set up the header
@@ -166,10 +166,16 @@ def find_open_hours_host(api_key, channel_id, server_id):
     # Check if the request was successful
     if response.status_code == 200:
         # Process the response here
-        discord_id = response.json().get('postedEvents')[0]['signUps'][0]['userId']
-        return discord_id
+        try:
+            discord_id = response.json().get('postedEvents')[0]['signUps'][0]['userId']
+            return discord_id
+        except:
+            logging.info("Issue finding discord user from event. Error:", response.status_code, response.text)
+            return None
+
+        
     else:
-        print("Error:", response.status_code, response.text)
+        logging.error("Error:", response.status_code, response.text)
     
     return None
 
@@ -192,12 +198,16 @@ async def send_discord_message(channel_id, discord_user_id, message):
     """Sends a message in a Discord channel and tags a user."""
     intents = discord.Intents.default()
     client = discord.Client(intents=intents)
+    backup_message = "No one is signed up to host this evening. Please address accordingly."
 
     async def on_ready():
         print(f'Logged in as {client.user}')
         channel = client.get_channel(channel_id)
         if channel:
-            await channel.send(f'<@{discord_user_id}> {message}')
+            if discord_user_id is not None:
+                await channel.send(f'<@{839006433050886174}> {message}')
+            else:
+                await channel.send(f'<@{discord_user_id}> {backup_message}')
         await client.close()
 
     client.event(on_ready)
@@ -214,6 +224,10 @@ def send_discord_reminder(discord_user_id, message):
 logging.info("Starting hosting open hours reminder script")
 
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID)
+
+if discord_id == None:
+    send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!")
+    exit()
 
 discord_username = get_discord_username(discord_id)
 
