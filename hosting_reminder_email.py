@@ -198,7 +198,6 @@ async def send_discord_message(channel_id, discord_user_id, message):
     """Sends a message in a Discord channel and tags a user."""
     intents = discord.Intents.default()
     client = discord.Client(intents=intents)
-    backup_message = "No one is signed up to host this evening. Please address accordingly."
 
     leadership_role_id = 839006433050886174
     async def on_ready():
@@ -206,7 +205,7 @@ async def send_discord_message(channel_id, discord_user_id, message):
         channel = client.get_channel(channel_id)
         if channel:
             if discord_user_id is None:
-                await channel.send(f'<@&{leadership_role_id}> {backup_message}')
+                await channel.send(f'<@&{leadership_role_id}> {message}')
             else:
                 await channel.send(f'<@{discord_user_id}> {message}')
         await client.close()
@@ -227,7 +226,7 @@ logging.info("Starting hosting open hours reminder script")
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID)
 
 if discord_id == None:
-    send_discord_reminder(discord_id, "RMM Open Hours starts in 2 hours!")
+    send_discord_reminder(discord_id, "No one is signed up to host this evening. Please address accordingly.")
     exit()
 
 discord_username = get_discord_username(discord_id)
