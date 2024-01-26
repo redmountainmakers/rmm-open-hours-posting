@@ -144,7 +144,7 @@ def read_template_file(file_path):
 def find_open_hours_host(api_key, channel_id, server_id):
 
     # Current time and 8 hours from now in Unix timestamp
-    current_time = int(time.time()) - 5 * 3600
+    current_time = int(time.time())# - 5 * 3600
     eight_hours_later = current_time + 8 * 3600
 
     # Set up the header
