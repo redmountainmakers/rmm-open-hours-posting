@@ -206,9 +206,9 @@ async def send_discord_message(channel_id, discord_user_id, message):
         channel = client.get_channel(channel_id)
         if channel:
             if discord_user_id is None:
-                await channel.send(f'<@&{leadership_role_id}> {message}')
+                await channel.send(f'<@&{leadership_role_id}> {backup_message}')
             else:
-                await channel.send(f'<@{discord_user_id}> {backup_message}')
+                await channel.send(f'<@{discord_user_id}> {message}')
         await client.close()
 
     client.event(on_ready)
