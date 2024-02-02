@@ -7,12 +7,12 @@ SERVER_ID = os.getenv("SERVER_ID")
 CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
 TEST_CHANNEL_ID = int(os.getenv("TEST_CHANNEL_ID"))
 
-one_day_from_now = int(time.time()) + 64 * 3600 #offset by 5 hours for testing
+one_day_from_now = int(time.time()) + 26 * 3600 #offset by 26 hours for testing doing a 24 hr notice to open hours
 
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID, one_day_from_now)
 
 if discord_id == None:
-    send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, TEST_CHANNEL_ID, "No one is signed up to host tomorrow. Please address accordingly.")
+    send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, "No one is signed up to host tomorrow. Please address accordingly.")
 
 # TODO
 # if today is Monday:
