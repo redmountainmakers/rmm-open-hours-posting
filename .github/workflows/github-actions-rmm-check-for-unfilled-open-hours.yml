@@ -1,0 +1,36 @@
+name: Discord check for unfilled Open Hours
+
+on: 
+  schedule:
+    - cron: '0 20 * * Sat' 
+    - cron: '0 18 * * Fri'
+    - cron: '0 23 * * Mon,Wed'
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run script
+      run: python check_for_unfilled_open_hours.py
+      env:
+        DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        RH_API_KEY: ${{ secrets.RH_API_KEY }}        
+        RAIDHELPER_LEADER_ID: ${{ secrets.RAIDHELPER_LEADER_ID }}
+        SERVER_ID: ${{ secrets.SERVER_ID }}
+        CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+        TEST_CHANNEL_ID: ${{ secrets.TEST_CHANNEL_ID }}

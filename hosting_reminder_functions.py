@@ -134,11 +134,11 @@ def read_template_file(file_path):
     with open(file_path, 'r') as file:
         return file.read()
 
-def find_open_hours_host(api_key, channel_id, server_id):
+def find_open_hours_host(api_key, channel_id, server_id, time):
 
     # Current time and 8 hours from now in Unix timestamp
-    current_time = int(time.time()) - 5 * 3600 #offset by 5 hours for testing
-    eight_hours_later = current_time + 8 * 3600
+    
+    eight_hours_later = time + 8 * 3600
 
     # Set up the header
     headers = {
@@ -146,7 +146,7 @@ def find_open_hours_host(api_key, channel_id, server_id):
         'Page': '1',
         'IncludeSignUps': 'True',
         'ChannelFilter': str(channel_id),
-        'StartTimeFilter': str(current_time),
+        'StartTimeFilter': str(time),
         'EndTimeFilter': str(eight_hours_later)
     }
 
