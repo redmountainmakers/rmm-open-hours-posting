@@ -2,9 +2,6 @@ name: Discord check for unfilled Open Hours
 
 on: 
   schedule:
-    - cron: '0 20 * * Sat' 
-    - cron: '0 18 * * Fri'
-    - cron: '0 23 * * Mon,Wed'
   workflow_dispatch:
 
 jobs:
