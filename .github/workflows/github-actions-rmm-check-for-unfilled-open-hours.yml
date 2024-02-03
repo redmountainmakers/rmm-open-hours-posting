@@ -1,7 +1,6 @@
 name: Discord check for unfilled Open Hours
 
 on: 
-  schedule:
   workflow_dispatch:
 
 jobs:
