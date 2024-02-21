@@ -16,7 +16,7 @@ EVENT_DETAILS = {
 
 # Retrieve environment variables
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-WA_API_KEY = os.getenv("WA_API_KEY")
+RH_API_KEY = os.getenv("RH_API_KEY")
 RAIDHELPER_LEADER_ID = os.getenv("RAIDHELPER_LEADER_ID")
 SERVER_ID = os.getenv("SERVER_ID")
 CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
@@ -58,8 +58,8 @@ async def post_event(event, channel_id):
     async with aiohttp.ClientSession() as session:
         try:
             async with session.post(
-                f"https://raid-helper.dev/api/v2/servers/{SERVER_ID}/channels/{channel_id}/event",
-                headers={"Authorization": WA_API_KEY, "Content-Type": "application/json; charset=utf-8"},
+                f"https://raid-helper.dev/api/v3/servers/{SERVER_ID}/channels/{channel_id}/event",
+                headers={"Authorization": RH_API_KEY, "Content-Type": "application/json; charset=utf-8"},
                 json=event,
             ) as response:
                 response.raise_for_status()
