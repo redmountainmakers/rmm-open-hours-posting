@@ -58,7 +58,7 @@ async def post_event(event, channel_id):
     async with aiohttp.ClientSession() as session:
         try:
             async with session.post(
-                f"https://raid-helper.dev/api/v3/servers/{SERVER_ID}/channels/{channel_id}/event",
+                f"https://raid-helper.dev/api/v2/servers/{SERVER_ID}/channels/{channel_id}/event",
                 headers={"Authorization": RH_API_KEY, "Content-Type": "application/json; charset=utf-8"},
                 json=event,
             ) as response:
