@@ -14,7 +14,8 @@ This repository contains a script and associated GitHub Action to automate the p
 
 1. **Environment Variables**: The script requires several environment variables to be set:
    - `DISCORD_BOT_TOKEN`: Token for the Discord bot.
-   - `WA_API_KEY`: API key for the Raid Helper.
+   - `RH_API_KEY`: API key for the Raid Helper.
+   - `RH_API_KEY`: API key for Wild Apricot.
    - `RAIDHELPER_LEADER_ID`: Leader ID for the Raid Helper.
    - `SERVER_ID`: Discord server ID.
    - `CHANNEL_ID`: Discord channel ID where the events will be posted.
