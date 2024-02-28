@@ -13,7 +13,7 @@ TEST_CHANNEL_ID = int(os.getenv("TEST_CHANNEL_ID"))
 
 logging.info("Starting hosting open hours reminder script")
 
-current_time = int(time.time()) - 5 * 3600 #offset by 5 hours for testing
+current_time = int(time.time()) #- 5 * 3600 #offset by 5 hours for testing
 
 print(f"Current time: {current_time}")
 
@@ -29,7 +29,7 @@ access_token = get_wild_apricot_access_token(WA_API_KEY)
 wild_apricot_user_id = find_contact_by_discord_username(discord_username, access_token)
 
 if wild_apricot_user_id == None:
-    logging.info(f"Contact not found, sending discord message")
+    logging.info(f"Contact not found, sending discord message to {discord_id}")
     send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, "RMM Open Hours starts in 2 hours!")
     exit()
 
