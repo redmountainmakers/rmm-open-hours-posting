@@ -50,3 +50,4 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f62fb0a4e90>
 connections: ['[(<aiohttp.client_proto.ResponseHandler object at 0x7f66eec019d0>, 247.783446415)]']
 connector: <aiohttp.connector.TCPConnector object at 0x7f66eebb9a60>
 2024-03-06 04:29:24,181 - INFO - Searching for open hours host
+2024-03-06 04:31:35,466 - INFO - Searching for open hours host
