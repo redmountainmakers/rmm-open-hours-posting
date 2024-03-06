@@ -11,7 +11,7 @@ TEST_CHANNEL_ID = int(os.getenv("TEST_CHANNEL_ID"))
 
 one_day_from_now = int(time.time()) + 26 * 3600 #offset by 26 hours for testing doing a 24 hr notice to open hours
 
-test_time = dt_cst = datetime(2024, 3, 11, 18, 55, tzinfo=timezone(timedelta(hours=-6)))
+test_time = dt_cst = datetime(2024, 3, 6, 18, 55, tzinfo=timezone(timedelta(hours=-6)))
 print(test_time)
 unix_test_time = int(test_time.timestamp())
 print(unix_test_time)
