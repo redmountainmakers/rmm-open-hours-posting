@@ -9,7 +9,7 @@ TEST_CHANNEL_ID = int(os.getenv("TEST_CHANNEL_ID"))
 
 one_day_from_now = int(time.time()) + 26 * 3600 #offset by 26 hours for testing doing a 24 hr notice to open hours
 
-test_time = 1710201600
+test_time = 1710201300
 
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID, test_time)
 
