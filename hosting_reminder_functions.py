@@ -161,8 +161,10 @@ def find_open_hours_host(api_key, channel_id, server_id, time):
     if response.status_code == 200:
         # Process the response here
         try:
-            discord_id = response.json().get('postedEvents')[0]['signUps'][0]['userId']
-            return discord_id
+            for signUp in response.json().get('postedEvents')[0]['signUps']:
+                if signUp['className'] == "Accepted":
+                    discord_id = signUp['userId']
+                    return discord_id
         except:
             logging.info("Issue finding discord user from event. Error:", response.status_code, response.text)
             return None
