@@ -13,7 +13,7 @@ TEST_CHANNEL_ID = int(os.getenv("TEST_CHANNEL_ID"))
 
 logging.info("Starting hosting open hours reminder script")
 
-current_time = int(time.time()) - 28 * 3600 #offset by 5 hours for testing
+current_time = int(time.time()) + 49 * 3600 #offset by 5 hours for testing
 
 
 print(f"Current time: {current_time}")
