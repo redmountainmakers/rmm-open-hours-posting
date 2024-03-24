@@ -29,6 +29,8 @@ print(discord_id)
 
 if discord_id == None:
     send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, "No one is signed up to host tomorrow. Please address accordingly.")
+else:
+    logging.info(f"Found host {discord_id} no notification necessary")
 
 # TODO
 # if today is Monday:
