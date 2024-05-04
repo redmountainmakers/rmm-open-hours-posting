@@ -562,3 +562,6 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f83c8dcd0d0>
 2024-05-04 17:02:08,361 - WARNING - PyNaCl is not installed, voice will NOT be supported
 2024-05-04 17:02:08,361 - INFO - logging in using static token
 2024-05-04 17:02:12,426 - INFO - Email sent successfully! to Ava
+2024-05-04 21:03:59,520 - INFO - Starting to look 1 day ahead for open hours host
+2024-05-04 21:03:59,520 - INFO - Searching for open hours host
+2024-05-04 21:04:00,217 - INFO - Found host 532070816406569005 no notification necessary
