@@ -760,3 +760,8 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f42bb2d5040>
 2024-05-31 19:06:13,918 - INFO - Starting to look 1 day ahead for open hours host
 2024-05-31 19:06:13,918 - INFO - Searching for open hours host
 2024-05-31 19:06:14,842 - INFO - Found host 532070816406569005 no notification necessary
+2024-06-01 17:02:10,647 - INFO - Starting hosting open hours reminder script
+2024-06-01 17:02:10,647 - INFO - Searching for open hours host
+2024-06-01 17:02:11,468 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2024-06-01 17:02:11,468 - INFO - logging in using static token
+2024-06-01 17:02:14,626 - INFO - Email sent successfully! to Avafay
