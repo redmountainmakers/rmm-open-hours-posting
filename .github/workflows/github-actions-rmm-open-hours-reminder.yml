@@ -39,6 +39,7 @@ jobs:
         SERVER_ID: ${{ secrets.SERVER_ID }}
         CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
         TEST_CHANNEL_ID: ${{ secrets.TEST_CHANNEL_ID }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/google-credentials.json
 
 
     - name: Commit and push log file
