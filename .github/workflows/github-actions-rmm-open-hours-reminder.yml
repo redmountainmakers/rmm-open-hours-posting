@@ -28,6 +28,8 @@ jobs:
     - name: Create Google Credentials File
       run: printf "%s" "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" > google-credentials.json
 
+    - name: Print Raw Google Credentials File
+      run: cat google-credentials.json
 
     - name: Run script
       run: python hosting_reminder_email.py
