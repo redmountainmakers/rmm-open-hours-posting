@@ -40,5 +40,8 @@ html_template = read_template_file("reminder_email_template.html")
 
 email_body = fill_email_template(first_name, html_template)
 
+send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, "RMM Open Hours starts in 2 hours!")
 send_email(access_token, email_body, wild_apricot_user_id, first_name, email)
+
+
 
