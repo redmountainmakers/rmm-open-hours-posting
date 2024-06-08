@@ -26,8 +26,8 @@ jobs:
         pip install -r requirements.txt
   
     - name: Create Google Credentials File
-      run: printf "%s" "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" > google-credentials.json
-
+      echo "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" | jq . > google-credentials.json
+    
     - name: Print Raw Google Credentials File
       run: cat google-credentials.json
 
@@ -42,7 +42,6 @@ jobs:
         CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
         TEST_CHANNEL_ID: ${{ secrets.TEST_CHANNEL_ID }}
         GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/google-credentials.json
-
 
     - name: Commit and push log file
       run: |
