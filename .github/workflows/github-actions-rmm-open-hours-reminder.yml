@@ -26,7 +26,7 @@ jobs:
         pip install -r requirements.txt
   
     - name: Create Google Credentials File
-      echo "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" | jq . > google-credentials.json
+      run: echo "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" | jq . > google-credentials.json
     
     - name: Print Raw Google Credentials File
       run: cat google-credentials.json
