@@ -24,7 +24,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        
+    
+    - name: Create Google Credentials File
+        run: |
+          echo "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" > google-credentials.json
+
     - name: Run script
       run: python hosting_reminder_email.py
       env:
@@ -35,6 +39,8 @@ jobs:
         SERVER_ID: ${{ secrets.SERVER_ID }}
         CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
         TEST_CHANNEL_ID: ${{ secrets.TEST_CHANNEL_ID }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/google-credentials.json
+
 
     - name: Commit and push log file
       run: |

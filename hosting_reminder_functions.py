@@ -1,9 +1,12 @@
-import time
+import os
 import discord
 import requests
 import logging
 import base64
 import asyncio
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime, timedelta
 
 
 log_file_path = 'hosting_reminder.log'
@@ -195,6 +198,7 @@ async def send_discord_message(discord_bot_token, discord_user_id, channel_id, m
     intents = discord.Intents.default()
     client = discord.Client(intents=intents)
 
+
     leadership_role_id = 839006433050886174
     async def on_ready():
         print(f'Logged in as {client.user}')
@@ -211,4 +215,28 @@ async def send_discord_message(discord_bot_token, discord_user_id, channel_id, m
 
 def send_discord_reminder(discord_bot_token, discord_user_id, channel_id, message):
     asyncio.run(send_discord_message(discord_bot_token, discord_user_id, channel_id, message))
+
+def find_tours(date):
+    # Set up Google Sheets API credentials
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+    creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
+    client = gspread.authorize(creds)
+    # Open the Google Sheet
+    spreadsheet = client.open('Schedule a Tour (Responses)')
+    sheet = spreadsheet.sheet1  # or use .worksheet('Sheet Name') for a specific sheet
+
+    # Get all records from the sheet
+    records = sheet.get_all_records()
+
+    # Initialize summary string
+    summary = f"Tour Summary for {date}:\n"
+
+    # Check for rows with the specified date
+    for record in records:
+        if record['TOUR DATE'] == date:
+            # Format the output for each matching record
+            summary += f"Name: {record['NAME'].strip()}, Time: {record['Time'].strip()}, Phone Number: {record['PHONE NUMBER'].strip()}\n"
+
+    return summary
 
