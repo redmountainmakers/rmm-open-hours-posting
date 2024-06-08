@@ -1,5 +1,6 @@
 import os
 import time
+import json
 import discord
 import requests
 import logging
@@ -221,8 +222,24 @@ def find_tours(date):
     # Set up Google Sheets API credentials
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+    
+    # Load the JSON content from the file
+    with open(credentials_path, 'r') as file:
+        credentials = json.load(file)
+    
+    # Mask sensitive fields
+    sensitive_fields = ['private_key', 'client_email', 'client_id', 'private_key_id']
+    for field in sensitive_fields:
+        if field in credentials:
+            credentials[field] = '***MASKED***'
+    
+    # Print the sanitized JSON
+    print("Sanitized JSON Credentials:")
+    print(json.dumps(credentials, indent=2))
+    
     creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
     client = gspread.authorize(creds)
+    
     # Open the Google Sheet
     spreadsheet = client.open('Schedule a Tour (Responses)')
     sheet = spreadsheet.sheet1  # or use .worksheet('Sheet Name') for a specific sheet
