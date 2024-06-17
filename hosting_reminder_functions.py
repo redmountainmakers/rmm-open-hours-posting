@@ -225,6 +225,13 @@ def find_tours(date):
     
     print("test printing JSON credentials")
 
+    # Check if the file exists and is not empty
+    if not os.path.exists(credentials_path):
+        raise FileNotFoundError(f"File not found: {credentials_path}")
+
+    if os.path.getsize(credentials_path) == 0:
+        raise ValueError(f"File is empty: {credentials_path}")
+
     # Read the JSON file
     with open('google-credentials.json', 'r') as file:
         json_content = json.load(file)
