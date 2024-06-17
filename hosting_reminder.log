@@ -936,3 +936,13 @@ connector: <aiohttp.connector.TCPConnector object at 0x7fc7e39ba240>
 2024-06-17 04:10:31,628 - ERROR - Unclosed connector
 connections: ['[(<aiohttp.client_proto.ResponseHandler object at 0x7f2bcd5865d0>, 90.993124782)]']
 connector: <aiohttp.connector.TCPConnector object at 0x7f2bcd45e2a0>
+2024-06-17 04:16:18,795 - INFO - Starting hosting open hours reminder script
+2024-06-17 04:16:19,594 - INFO - Searching for open hours host
+2024-06-17 04:16:19,987 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2024-06-17 04:16:19,987 - INFO - logging in using static token
+2024-06-17 04:16:22,739 - INFO - logging in using static token
+2024-06-17 04:16:23,158 - INFO - Shard ID None has connected to Gateway (Session ID: cdc2b9b732e33ab3ea885603051b2837).
+2024-06-17 04:16:26,314 - INFO - Email sent successfully! to Avafay
+2024-06-17 04:16:26,326 - ERROR - Unclosed connector
+connections: ['[(<aiohttp.client_proto.ResponseHandler object at 0x7fed67d825d0>, 82.304409489)]']
+connector: <aiohttp.connector.TCPConnector object at 0x7fed67c522a0>
