@@ -243,7 +243,7 @@ def find_tours(date):
         if record['TOUR DATE'] == date:
             # Format the output for each matching record
             found_tour = True
-            summary += f"Name: {record['NAME'].strip()}, Time: {record['Time'].strip()}, Phone Number: {record['PHONE NUMBER'].strip()}\n"
+            summary += f"Name: {record['NAME'].strip()}, Time: {record['Time'].strip()}, Phone Number: {record['PHONE NUMBER']}\n"
 
     if not found_tour:
         summary += "No tours found for the specified date."
