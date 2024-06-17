@@ -223,6 +223,8 @@ def find_tours(date):
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
     
+    print("test printing JSON credentials")
+
     # Read the JSON file
     with open('google-credentials.json', 'r') as file:
         json_content = json.load(file)
