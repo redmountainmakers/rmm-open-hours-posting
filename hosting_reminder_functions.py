@@ -223,19 +223,12 @@ def find_tours(date):
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
     
-    # Load the JSON content from the file
-    with open(credentials_path, 'r') as file:
-        credentials = json.load(file)
-    
-    # Mask sensitive fields
-    sensitive_fields = ['private_key', 'client_email', 'client_id', 'private_key_id']
-    for field in sensitive_fields:
-        if field in credentials:
-            credentials[field] = '***MASKED***'
-    
-    # Print the sanitized JSON
-    print("Sanitized JSON Credentials:")
-    print(json.dumps(credentials, indent=2))
+    # Read the JSON file
+    with open('google-credentials.json', 'r') as file:
+        json_content = json.load(file)
+
+    # Print the raw text of the JSON content
+    print(json.dumps(json_content))
     
     creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
     client = gspread.authorize(creds)
