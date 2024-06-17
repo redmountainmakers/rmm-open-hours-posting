@@ -14,7 +14,7 @@ TEST_CHANNEL_ID = int(os.getenv("TEST_CHANNEL_ID"))
 
 logging.info("Starting hosting open hours reminder script")
 
-current_time = int(time.time()) - 9 * 3600 #offsets for testing
+current_time = int(time.time())# - 9 * 3600 #offsets for testing
 
 local_timezone = pytz.timezone('US/Central')
 today = datetime.now(local_timezone) # - timedelta(days=1)
