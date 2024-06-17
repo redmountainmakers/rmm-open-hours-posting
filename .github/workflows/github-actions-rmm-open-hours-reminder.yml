@@ -27,7 +27,7 @@ jobs:
   
     - name: Create Google Credentials File
       run: |
-        echo "${{ secrets.GOOGLE_CREDENTIALS_BASE64 }}" | jq . > google-credentials.json
+        echo "${{ secrets.GOOGLE_CREDENTIALS_JSON }}" | jq . > google-credentials.json
 
     - name: Print Raw Google Credentials File
       run: cat google-credentials.json
