@@ -222,25 +222,7 @@ def find_tours(date):
     # Set up Google Sheets API credentials
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-    
-    print("test printing JSON credentials")
 
-    # Check if the file exists and is not empty
-    if not os.path.exists(credentials_path):
-        raise FileNotFoundError(f"File not found: {credentials_path}")
-
-    if os.path.getsize(credentials_path) == 0:
-        raise ValueError(f"File is empty: {credentials_path}")
-
-    # Read the JSON file
-    with open('google-credentials.json', 'r') as file:
-        json_content = json.load(file)
-
-    # Print the raw text of the JSON content
-    print(json.dumps(json_content))
-
-    print("finished test printing JSON credentials")
-    
     creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
     client = gspread.authorize(creds)
     
@@ -255,10 +237,13 @@ def find_tours(date):
     summary = f"Tour Summary for {date}:\n"
 
     # Check for rows with the specified date
-    for record in records:
-        if record['TOUR DATE'] == date:
-            # Format the output for each matching record
-            summary += f"Name: {record['NAME'].strip()}, Time: {record['Time'].strip()}, Phone Number: {record['PHONE NUMBER'].strip()}\n"
+    if records:
+        for record in records:
+            if record['TOUR DATE'] == date:
+                # Format the output for each matching record
+                summary += f"Name: {record['NAME'].strip()}, Time: {record['Time'].strip()}, Phone Number: {record['PHONE NUMBER'].strip()}\n"
+    else:
+        summary += "No tours found for the specified date."
 
     return summary
 

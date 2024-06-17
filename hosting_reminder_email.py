@@ -13,7 +13,7 @@ TEST_CHANNEL_ID = int(os.getenv("TEST_CHANNEL_ID"))
 
 logging.info("Starting hosting open hours reminder script")
 
-current_time = int(time.time()) #+ 49 * 3600 #offsets for testing
+current_time = int(time.time()) - 9 * 3600 #offsets for testing
 
 today = datetime.today() #+ timedelta(days=1)
 formatted_date = f"{today.month}/{today.day}/{today.year}"
@@ -25,7 +25,7 @@ print(f"Current time: {current_time}")
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID, current_time)
 
 if discord_id == None:
-    send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, f"No one is signed up to host this evening. Please address accordingly./n {tour_summary}")
+    send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, f"No one is signed up to host this evening. Please address accordingly.\n {tour_summary}")
     exit()
 
 discord_username = get_discord_username(DISCORD_BOT_TOKEN, discord_id)
