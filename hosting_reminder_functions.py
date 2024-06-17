@@ -231,6 +231,8 @@ def find_tours(date):
 
     # Print the raw text of the JSON content
     print(json.dumps(json_content))
+
+    print("finished test printing JSON credentials")
     
     creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
     client = gspread.authorize(creds)
