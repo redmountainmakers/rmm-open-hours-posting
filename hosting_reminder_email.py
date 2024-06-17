@@ -15,7 +15,7 @@ logging.info("Starting hosting open hours reminder script")
 
 current_time = int(time.time()) - 9 * 3600 #offsets for testing
 
-today = datetime.today() #+ timedelta(days=1)
+today = datetime.today() - timedelta(days=1)
 formatted_date = f"{today.month}/{today.day}/{today.year}"
 
 tour_summary = find_tours(formatted_date)
