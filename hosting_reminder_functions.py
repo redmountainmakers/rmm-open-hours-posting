@@ -244,10 +244,10 @@ def find_tours(date):
             # Format the output for each matching record
             found_tour = True
             summary += f"Name: {record['NAME']}, Time: {record['Time']}, Phone Number: {record['PHONE NUMBER']}\n"
-            summary += "Please provide the following information about the tour: \n 1. Did the tour occur? \n 2. What are their specific interests at RMM? \n 3. Do they have any specific questions about the space? \n"
+            summary += "Please provide the following information about each tour: \n 1. Did the tour occur? \n 2. What are their specific interests at RMM? \n 3. Do they have any specific questions about the space? \n"
 
     if not found_tour:
-        summary += f"No tours are scheduled for today."
+        summary = f"No tours are scheduled for {date}."
 
     return summary
 
