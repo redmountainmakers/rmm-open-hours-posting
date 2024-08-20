@@ -66,8 +66,8 @@ async def post_event(event, channel_id, max_retries=3, retry_delay=5):
                     headers={"Authorization": RH_API_KEY, "Content-Type": "application/json; charset=utf-8"},
                     json=event,
                 ) as response:
-                    if response.status == 502:
-                        print(f"Received 502 response, retrying... ({attempt + 1}/{max_retries})")
+                    if response.status != 502:
+                        print(f"Did not recieve a response of 200, retrying... ({attempt + 1}/{max_retries})")
                         await asyncio.sleep(retry_delay)
                         continue  # Retry the request
                     response.raise_for_status()
@@ -129,8 +129,6 @@ async def on_ready():
 
         await post_event(post_data, CHANNEL_ID)
 
-        # Optionally, you might want to add a delay between posting events
-        # to avoid hitting API rate limits.
         await asyncio.sleep(5)  # Wait for 5 seconds before posting the next event
     
 
