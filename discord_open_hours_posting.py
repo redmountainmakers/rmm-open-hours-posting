@@ -54,21 +54,34 @@ async def create_event_for_date(date, time, duration):
         "duration": duration,
     }
 
-async def post_event(event, channel_id):
-    async with aiohttp.ClientSession() as session:
-        try:
-            async with session.post(
-                f"https://raid-helper.dev/api/v2/servers/{SERVER_ID}/channels/{channel_id}/event",
-                headers={"Authorization": RH_API_KEY, "Content-Type": "application/json; charset=utf-8"},
-                json=event,
-            ) as response:
-                response.raise_for_status()
-                print(f'Posted event "{event["title"]}"')
-                print(await response.text())
-        except aiohttp.ClientResponseError as e:
-            print(f"Error posting event: {e.status} - {e.message}")
-        except Exception as e:
-            print(f"Error posting event: {e}")
+import aiohttp
+import asyncio
+
+async def post_event(event, channel_id, max_retries=3, retry_delay=5):
+    for attempt in range(max_retries):
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.post(
+                    f"https://raid-helper.dev/api/v2/servers/{SERVER_ID}/channels/{channel_id}/event",
+                    headers={"Authorization": RH_API_KEY, "Content-Type": "application/json; charset=utf-8"},
+                    json=event,
+                ) as response:
+                    if response.status == 502:
+                        print(f"Received 502 response, retrying... ({attempt + 1}/{max_retries})")
+                        await asyncio.sleep(retry_delay)
+                        continue  # Retry the request
+                    response.raise_for_status()
+                    print(f'Posted event "{event["title"]}"')
+                    print(await response.text())
+                    return  # Exit the function if successful
+            except aiohttp.ClientResponseError as e:
+                print(f"Error posting event: {e.status} - {e.message}")
+            except Exception as e:
+                print(f"Error posting event: {e}")
+        
+        # If we've exhausted all retries
+        print("Failed to post event after multiple attempts.")
+
 
 current_date = datetime.date.today()
 current_year, current_month = current_date.year, current_date.month
