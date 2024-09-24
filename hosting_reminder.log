@@ -1743,3 +1743,6 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f3ac69814c0>
 2024-09-22 19:03:06,437 - ERROR - Unclosed connector
 connections: ['[(<aiohttp.client_proto.ResponseHandler object at 0x7f5acc504e90>, 261.098821296)]']
 connector: <aiohttp.connector.TCPConnector object at 0x7f5acc4f4ce0>
+2024-09-24 00:16:33,597 - INFO - Starting to look 1 day ahead for open hours host
+2024-09-24 00:16:33,597 - INFO - Searching for open hours host
+2024-09-24 00:16:34,356 - INFO - Found host 1242291821816844402 no notification necessary
