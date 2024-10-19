@@ -66,10 +66,10 @@ async def post_event(event, channel_id, max_retries=3, retry_delay=5):
                     headers={"Authorization": RH_API_KEY, "Content-Type": "application/json; charset=utf-8"},
                     json=event,
                 ) as response:
-                    if response.status != 502:
-                        print(f"Did not recieve a response of 200, retrying... ({attempt + 1}/{max_retries})")
-                        await asyncio.sleep(retry_delay)
-                        continue  # Retry the request
+                    #if response.status != 502:
+                        #print(f"Did not recieve a response of 200, retrying... ({attempt + 1}/{max_retries})")
+                        #await asyncio.sleep(retry_delay)
+                        #continue  # Retry the request
                     response.raise_for_status()
                     print(f'Posted event "{event["title"]}"')
                     print(await response.text())
