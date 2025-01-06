@@ -20,10 +20,6 @@ local_timezone = pytz.timezone('US/Central')
 today = datetime.now(local_timezone) # - timedelta(days=1)
 formatted_date = f"{today.month}/{today.day}/{today.year}"
 
-tour_summary = find_tours(formatted_date)
-
-print(tour_summary)
-
 print(f"Current time: {current_time}")
 
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID, current_time)
