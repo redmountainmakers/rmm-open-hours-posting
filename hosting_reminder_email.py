@@ -25,7 +25,7 @@ print(f"Current time: {current_time}")
 discord_id = find_open_hours_host(RH_API_KEY, CHANNEL_ID, SERVER_ID, current_time)
 
 if discord_id == None:
-    send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, f"No one is signed up to host this evening. Please address accordingly.\n {tour_summary}")
+    send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, f"No one is signed up to host this evening. Please address accordingly.\n")
     exit()
 
 discord_username = get_discord_username(DISCORD_BOT_TOKEN, discord_id)
@@ -44,7 +44,7 @@ html_template = read_template_file("reminder_email_template.html")
 
 email_body = fill_email_template(first_name, html_template)
 
-send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, f"RMM Open Hours starts in 2 hours!\n {tour_summary}")
+send_discord_reminder(DISCORD_BOT_TOKEN, discord_id, CHANNEL_ID, f"RMM Open Hours starts in 2 hours!\n")
 send_email(access_token, email_body, wild_apricot_user_id, first_name, email)
 
 
