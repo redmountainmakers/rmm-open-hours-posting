@@ -2945,3 +2945,11 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f615c4be780>
 2025-02-09 20:06:12,252 - ERROR - Unclosed connector
 connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7f71afbec5f0>, 111.568229939)])']
 connector: <aiohttp.connector.TCPConnector object at 0x7f71afc08620>
+2025-02-11 00:16:50,813 - INFO - Starting to look 1 day ahead for open hours host
+2025-02-11 00:16:50,813 - INFO - Searching for open hours host
+2025-02-11 00:16:51,619 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-02-11 00:16:51,619 - INFO - logging in using static token
+2025-02-11 00:16:52,219 - INFO - Shard ID None has connected to Gateway (Session ID: 9e4ee72496463064ede814c672f2a8bb).
+2025-02-11 00:16:54,527 - ERROR - Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7fb0af9eb890>, 124.222231887)])']
+connector: <aiohttp.connector.TCPConnector object at 0x7fb0af88fe30>
