@@ -116,7 +116,7 @@ async def on_ready():
                 "templateId": 1,
                 "date": event_data["date"],
                 "leaderId": RAIDHELPER_LEADER_ID,
-                "advancedSettings": {"duration": event_data["duration"], "limit": 1, "create_discordevent": false},
+                "advancedSettings": {"duration": event_data["duration"], "limit": 1, "create_discordevent": False},
             }
 
         print(f"Event JSON data: {event}")
