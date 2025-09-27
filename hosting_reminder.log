@@ -4798,3 +4798,6 @@ connector: <aiohttp.connector.TCPConnector object at 0x7feca67fe960>
 2025-09-27 17:03:58,541 - ERROR - Unclosed connector
 connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7fa394c606b0>, 1195.988866901)])']
 connector: <aiohttp.connector.TCPConnector object at 0x7fa394c38f20>
+2025-09-27 21:03:36,013 - INFO - Starting to look 1 day ahead for open hours host
+2025-09-27 21:03:36,013 - INFO - Searching for open hours host
+2025-09-27 21:03:37,219 - INFO - Found host 532070816406569005 no notification necessary
