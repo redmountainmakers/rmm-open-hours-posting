@@ -2,9 +2,9 @@ name: Discord Open Hours Reminder
 
 on: 
   schedule:
-    - cron: '0 19 * * Sun' #19 for Summer, 20 for Winter
-    - cron: '0 17 * * Sat' #17 for Summer, 18 for Winter
-    - cron: '0 21 * * Tue,Thu' #21 for Summer, 22 for Winter
+    - cron: '0 20 * * Sun' #19 for Summer, 20 for Winter
+    - cron: '0 18 * * Sat' #17 for Summer, 18 for Winter
+    - cron: '0 22 * * Tue,Thu' #21 for Summer, 22 for Winter
   workflow_dispatch:
 
 jobs:
