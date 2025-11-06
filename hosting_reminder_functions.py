@@ -201,13 +201,13 @@ async def send_discord_message(discord_bot_token, discord_user_id, channel_id, m
     client = discord.Client(intents=intents)
 
 
-    leadership_role_id = 839006433050886174
+    notified_role_id = 839006433050886174 #Currently Leadership
     async def on_ready():
         print(f'Logged in as {client.user}')
         channel = client.get_channel(channel_id)
         if channel:
             if discord_user_id is None:
-                await channel.send(f'<@&{leadership_role_id}> {message}')
+                await channel.send(f'<@&{notified_role_id}> {message}')
             else:
                 await channel.send(f'<@{discord_user_id}> {message}')
         await client.close()
