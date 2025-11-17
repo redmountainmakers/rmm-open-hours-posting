@@ -2,7 +2,7 @@ name: Discord check for unfilled Open Hours
 
 on: 
   schedule:
-    - cron: '0 22 * * Sat' #21 for Summer, 22 for Winter
+    - cron: '0 20 * * Sat' #19 for Summer, 20 for Winter
     - cron: '0 20 * * Fri' #19 for Summer, 20 for Winter
     - cron: '59 23 * * Mon,Wed' #23 for Summer, 23:59 for Winter
   workflow_dispatch:
