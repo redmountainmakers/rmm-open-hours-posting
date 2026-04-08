@@ -6375,3 +6375,9 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f6cccb05a30>
 2026-04-07 21:17:40,171 - WARNING - davey is not installed, voice will NOT be supported
 2026-04-07 21:17:40,171 - INFO - logging in using static token
 2026-04-07 21:17:41,044 - INFO - Shard ID None has connected to Gateway (Session ID: 20eb090d9b64cadb7d3ed8de97de0fe7).
+2026-04-08 23:12:27,578 - INFO - Starting to look 1 day ahead for open hours host
+2026-04-08 23:12:27,578 - INFO - Searching for open hours host
+2026-04-08 23:12:28,249 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2026-04-08 23:12:28,249 - WARNING - davey is not installed, voice will NOT be supported
+2026-04-08 23:12:28,249 - INFO - logging in using static token
+2026-04-08 23:12:28,839 - INFO - Shard ID None has connected to Gateway (Session ID: 8b662ed1ed4574dd8fea8219f8e32156).
