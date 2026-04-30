@@ -157,7 +157,7 @@ def find_open_hours_host(api_key, channel_id, server_id, time):
     }
 
     # Endpoint URL
-    url = f'https://raid-helper.dev/api/v3/servers/{server_id}/events'
+    url = f'https://raid-helper.xyz/api/v4/servers/{server_id}/events'
 
     # Send the GET request
     response = requests.get(url, headers=headers)
