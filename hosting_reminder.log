@@ -7260,3 +7260,6 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f6cccb05a30>
 2026-08-18 21:06:12,622 - INFO - Contact not found, sending discord message to 389224153716359178
 2026-08-18 21:06:12,623 - INFO - logging in using static token
 2026-08-18 21:06:13,376 - INFO - Shard ID None has connected to Gateway (Session ID: 183e88d225699cb5d5481f35c416ac7e).
+2026-08-19 23:04:31,704 - INFO - Starting to look 1 day ahead for open hours host
+2026-08-19 23:04:31,705 - INFO - Searching for open hours host
+2026-08-19 23:04:32,149 - INFO - Found host 1059153607758450829 no notification necessary
