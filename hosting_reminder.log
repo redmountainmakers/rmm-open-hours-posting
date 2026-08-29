@@ -7336,3 +7336,6 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f6cccb05a30>
 2026-08-29 17:14:08,284 - INFO - logging in using static token
 2026-08-29 17:14:09,304 - INFO - Shard ID None has connected to Gateway (Session ID: 9da8ff90dc571b76a82fca2784dc9de4).
 2026-08-29 17:14:12,578 - INFO - Email sent successfully! to Christian
+2026-08-29 19:09:44,951 - INFO - Starting to look 1 day ahead for open hours host
+2026-08-29 19:09:44,951 - INFO - Searching for open hours host
+2026-08-29 19:09:45,321 - INFO - Found host 532070816406569005 no notification necessary
