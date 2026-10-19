@@ -7680,3 +7680,6 @@ connector: <aiohttp.connector.TCPConnector object at 0x7f6cccb05a30>
 2026-10-18 17:10:53,056 - WARNING - davey is not installed, voice will NOT be supported
 2026-10-18 17:10:53,056 - INFO - logging in using static token
 2026-10-18 17:10:54,403 - INFO - Shard ID None has connected to Gateway (Session ID: 1e6cbe0d3fa4f45d3bd0df40dedc7fef).
+2026-10-19 23:03:24,930 - INFO - Starting to look 1 day ahead for open hours host
+2026-10-19 23:03:24,930 - INFO - Searching for open hours host
+2026-10-19 23:03:25,354 - INFO - Found host 772282859758944257 no notification necessary
