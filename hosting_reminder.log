@@ -1,1 +1,9 @@
 
+2026-11-22 18:14:14,505 - INFO - Starting hosting open hours reminder script
+2026-11-22 18:14:14,516 - INFO - Searching for open hours host
+2026-11-22 18:14:14,849 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2026-11-22 18:14:14,849 - WARNING - davey is not installed, voice will NOT be supported
+2026-11-22 18:14:14,849 - INFO - logging in using static token
+2026-11-22 18:14:18,259 - INFO - logging in using static token
+2026-11-22 18:14:22,873 - INFO - Shard ID None has connected to Gateway (Session ID: 2e7954ea22cb936bd15b38b9884266e5).
+2026-11-22 18:14:25,929 - INFO - Email sent successfully! to Christian
