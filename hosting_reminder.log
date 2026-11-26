@@ -15,3 +15,9 @@
 2026-11-24 22:04:03,447 - INFO - logging in using static token
 2026-11-24 22:04:04,402 - INFO - Shard ID None has connected to Gateway (Session ID: 5b13bf03b273b49bab8ede2a86be1ddf).
 2026-11-24 22:04:07,810 - INFO - Email sent successfully! to Quinn
+2026-11-26 22:03:50,831 - INFO - Starting hosting open hours reminder script
+2026-11-26 22:03:50,840 - INFO - Searching for open hours host
+2026-11-26 22:03:51,210 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2026-11-26 22:03:51,210 - WARNING - davey is not installed, voice will NOT be supported
+2026-11-26 22:03:51,210 - INFO - logging in using static token
+2026-11-26 22:03:52,537 - INFO - Shard ID None has connected to Gateway (Session ID: e4e2909bd426de756edb6063efa8b8d7).
